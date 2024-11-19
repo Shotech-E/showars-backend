@@ -15,12 +15,10 @@ app.use(express.urlencoded({ limit: '25mb', extended: true }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(
-  cors({
-    origin: "https://showars-frontend-ssyw.vercel.app/",
-    credentials: true,
-  })
-);
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}));
 
 // Image route
 const uploadImage = require('./src/utils/uploadImage');
