@@ -3,9 +3,6 @@ const router = express.Router();
 const Order = require("./ordersModel");
 const verifyToken = require("../middleware/verifyToken");
 const verifyAdmin = require("../middleware/verifyAdmin");
-// const stripe = require("stripe")(
-//   "sk_test_51QE7lZLe2VbPgG0NBFeRqJ6noTxWLyLLWhYkzUvhjuoFcCwWrKPO8bv93T3UFvbh10cwMK2Ai9t2m6Dm0RXBh4zF00f1JAEL1P"
-// );
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // CREATE CHECKOUT SESSION
@@ -29,6 +26,8 @@ router.post("/create-checkout-session", async (req, res) => {
       mode: "payment",
       success_url: `http://localhost:5173/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `http://localhost:5173/cancel`,
+      // success_url: `https://showars-frontend-ssyw.vercel.app/success?session_id={CHECKOUT_SESSION_ID}`,
+      // cancel_url: `https://showars-frontend-ssyw.vercel.app/cancel`,
     });
     res.json({ id: session.id });
   } catch (error) {

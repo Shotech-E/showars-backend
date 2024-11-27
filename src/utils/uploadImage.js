@@ -7,11 +7,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// console.log("CLOUDINARY_CLOUD_NAME:", process.env.CLOUDINARY_CLOUD_NAME);
-// console.log("CLOUDINARY_API_KEY:", process.env.CLOUDINARY_API_KEY);
-// console.log("CLOUDINARY_API_SECRET:", process.env.CLOUDINARY_API_SECRET);
-
-
 const opts = {
   overwrite: true,
   invalidate: true,
@@ -22,10 +17,10 @@ const opts = {
 module.exports = (image) => {
   // image => base64
   return new Promise((resolve, reject) => {
-    console.log("Starting upload to Cloudinary...");
+    // console.log("Starting upload to Cloudinary...");
     cloudinary.uploader.upload(image, opts, (error, result) => {
       if (result && result.secure_url) {
-        console.log("Upload successful:", result.secure_url);
+        // console.log("Upload successful:", result.secure_url);
         return resolve(result.secure_url);
       }
 
